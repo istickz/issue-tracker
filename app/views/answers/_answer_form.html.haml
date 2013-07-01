@@ -1,0 +1,6 @@
+= simple_form_for([@issue, @answer])  do |f|
+  = render 'common/form_errors', object: @answer
+  %p
+    = f.input :body, label: '', as: :text
+  %p
+    = f.button :submit,class: "small button", value: "Ответить"

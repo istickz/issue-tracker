@@ -1,0 +1,49 @@
+%nav.top-bar
+  %ul.title-area
+    %li.name
+      %h1
+        %a.home{:href => root_path, :title => "Главная"}
+          %span
+            %i.general.foundicon-smiley>
+            НеСпрашивай.ру
+    %li.toggle-topbar.menu-icon
+      %a{:href => "#"}
+        %span menu
+  %section.top-bar-section
+
+    %ul.right
+      %li.divider
+      %li= link_to "Пользователи", (profiles_path)
+      - unless user_signed_in?
+        %li
+          %a{:href => new_user_session_path}
+            %i.general.foundicon-inbox>
+            Войти
+
+      - else
+        %li.divider
+        %li= link_to "Вопросы", (profile_path(current_user))+ "/issues"
+        %li.divider
+        %li= link_to "Ответы", (profile_path(current_user))+ "/feed"
+        %li.divider
+
+        %li.has-dropdown
+          - unless current_user.avatar?
+            %a{:href => "#"}
+              %img{:src => '/assets/no_avatar(thumb).jpg'}/
+              = current_user.name
+          -else
+            %a{:href => "#"}
+              = image_tag current_user.avatar.url(:thumb)
+              = current_user.name
+          %ul.dropdown
+
+            %li
+              = link_to(profile_path(current_user)) do
+                %p Мой профиль
+            %li
+              %a{:href => edit_user_registration_path}
+                %p Настройки
+            %li
+              = link_to(destroy_user_session_path, method: :delete) do
+                %p Выход

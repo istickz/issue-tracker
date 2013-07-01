@@ -1,0 +1,55 @@
+.row
+  .large-12.columns
+    .row
+      / Информация о пользователе
+      .large-4.small-12.columns
+        - unless @user.avatar?
+          %img{:src => '/assets/no_avatar.jpg'}/
+        -else
+          = image_tag @user.avatar
+        .hide-for-small.panel
+          %h3= @user.name
+          %h5.subheader
+            = @user.current_info
+
+
+
+      / Поле ввода вопроса
+      - if user_signed_in?
+
+        - unless current_user.id == @user.id
+          .large-8.columns
+            .panel
+              = simple_form_for @issue do |f|
+                = render 'common/form_errors', object: @issue
+                %p
+                  = f.input :body, label: 'Задайте вопрос', as: :text
+                %div{:style => "display: none;"}
+                  = f.input :assigned, input_html: { value: @user.id }
+                = f.button :submit, class: "small button", value: 'Задать вопрос'
+      - else
+        .large-8.columns
+          .panel
+            %p Вы не можете задавать вопросы
+
+      / Ответы
+      .large-8.columns
+        .panel
+          %h4.subheader Ответы
+          %br/
+          -if @user.answers.count == 0
+            %p Ответов нет
+
+          - @issues_for_user.each do |issue|
+            .row
+              %br/
+              .large-2.columns
+                = image_tag issue.user.avatar
+              .large-10.columns
+                %h5.subheader
+                  %strong= issue.body
+
+                %blockquote
+                  %p
+                  = render issue.answers
+

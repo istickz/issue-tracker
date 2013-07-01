@@ -1,0 +1,18 @@
+= provide(:title, 'Лента')
+.small-12.columns
+  .row
+    .large-8.large-centered.columns
+      %center
+        .panel
+          %h5.subheader Прямой эфир
+      - @issues.each do |issue|
+        - if issue.solved == true
+          .row
+            .large-12.columns
+              .panel
+                %strong= render issue
+                %blockquote
+                  = render issue.answers
+
+
+

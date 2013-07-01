@@ -1,0 +1,16 @@
+- provide(:title, 'Пользователи')
+.small-12.columns
+  .row
+    .large-8.large-centered.columns
+
+      %center
+        .panel
+          %h5.subheader  Все пользователи
+
+      .row
+        .large-12.columns
+          .panel
+            - @profiles.each do |profile|
+              = image_tag profile.avatar.url(:thumb)
+              = link_to profile.name, (profile_path(profile))
+              %hr/

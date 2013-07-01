@@ -1,0 +1,23 @@
+- provide(:title, 'Вопросы без ответа')
+.small-12.columns
+  .row
+    .large-8.large-centered.columns
+      %center
+        .panel
+          %h5.subheader Вопросы без ответа (#{@issues.count})
+      - if @issues.any?
+        .panel
+          %ul
+            = render @issues
+      -else
+        .row
+          .large-12.columns
+            .panel
+              %p Пока нет новых вопросов.
+
+
+
+
+
+
+

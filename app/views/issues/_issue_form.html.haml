@@ -1,0 +1,6 @@
+= simple_form_for @issue do |f|
+  = render 'common/form_errors', object: @issue
+  %p
+    = f.input :body, label: 'Ваш вопрос', type: :text
+    = f.input :assigned, label: "Назначить", :collection => @usernames, :selected => @usernames.first
+    = f.button :submit, class: "small button", value: 'Задать вопрос'

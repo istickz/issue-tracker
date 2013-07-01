@@ -1,0 +1,21 @@
+= provide(:title, 'Вход')
+.small-4.large-centered.columns
+  .panel
+
+    %center
+      %h3 Bойти
+    = simple_form_for(resource, :as => resource_name, :url => session_path(    resource_name)) do |f|
+      .small-12.large-centered.columns
+        .form-inputs
+          = f.input :email, label: false,placeholder: "Адрес электронной почты", :required => false, :autofocus => true
+          = f.input :password,label: false, placeholder: "Ваш пароль", :required => false
+          = f.input :remember_me, label: 'Запомнить меня', :as => :boolean if devise_mapping.rememberable?
+      .form-actions
+        %center
+          = f.button :submit, "Войти"
+      %hr
+    %center
+      %p Также вы можете
+      = render "devise/shared/links"
+
+

@@ -1,0 +1,9 @@
+/ - if on_my_issues_page?
+/   = display_solved(issue)
+.row
+  .small-2.columns
+    = image_tag issue.user.avatar
+  .small-10.columns
+    %p= link_to truncate(issue.body, length: 100), issue
+
+

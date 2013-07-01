@@ -1,0 +1,17 @@
+- provide(:title, 'Ответы')
+.small-12.columns
+  .row
+    .large-8.large-centered.columns
+      %center
+        .panel
+          %h5.subheader Ответы
+      - if @my_solved_issues.any?
+        .row
+          .large-12.columns
+            - @my_solved_issues.each do |issue|
+              .panel
+                %strong= render issue
+                %blockquote= render issue.answers
+      - else
+        %p Вы еще не задали ни одного вопроса.
+

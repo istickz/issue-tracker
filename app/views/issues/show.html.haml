@@ -1,0 +1,30 @@
+- provide(:title, 'Просмотр вопроса ')
+.small-12.columns
+  .row
+    .large-8.large-centered.columns
+
+      %center
+        .panel
+          %h5.subheader  Просмотр вопроса
+
+      .row
+        .large-12.columns
+          .panel
+            = render @issue
+
+            - if @issue.answers.any?
+              %blockquote
+                = render @issue.answers
+
+            -elsif user_signed_in?
+              = render 'answers/answer_form'
+            - else
+              %p Пожалуйста войдите на сайт, чтобы задать вопрос
+
+
+
+
+
+
+
+

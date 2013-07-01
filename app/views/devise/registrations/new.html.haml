@@ -1,0 +1,25 @@
+= provide(:title, 'Регистрация')
+.small-4.large-centered.columns
+  .panel
+
+    %center
+      %h3 Регистрация
+
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+        = f.error_notification
+        .small-12.large-centered.columns
+          .form-inputs
+            = f.input :name,placeholder: "Как Вас зовут?",label: false, :required => true, :autofocus => true
+            = f.input :email,placeholder: "Адрес электронной почты",label: false, :required => true
+            = f.input :password,placeholder: "Придумайте пароль",label: false, :required => true
+            = f.input :password_confirmation,label: false,placeholder: "Повторите пароль", :required => true
+        .form-actions
+          %center
+            = f.button :submit, "Присоедениться"
+          %hr
+        %center
+          %p Также вы можете
+          = render "devise/shared/links"
+
+
+
