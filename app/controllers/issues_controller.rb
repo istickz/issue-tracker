@@ -33,7 +33,7 @@ class IssuesController < ApplicationController
   end
 
   def issues_for_me
-    @issues = Issue.where(solved: false, assigned: current_user.id)
+    @issues = Issue.where(solved: false, assigned: "#{current_user.id}")
   end
 
 end
