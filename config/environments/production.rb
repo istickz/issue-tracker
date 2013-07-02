@@ -1,7 +1,10 @@
 IssueTracker::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  # Code is not reloaded between requests
+
+  config.logger = Logger.new('errors.log', 10, 1024000)
+
+ # Code is not reloaded between requests
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
